@@ -5,9 +5,9 @@ const Jimp = require('jimp');
 const { IgApiClient } = require('instagram-private-api');
 const { readFile } = require('fs');
 const { promisify } = require('util');
-const url = require("url");
 const fs = require('fs');
-const { write } = require("jimp");
+const cookieParser = require('cookie-parser');
+
 const readFileAsync = promisify(readFile);
 
 require("dotenv").config();
@@ -18,7 +18,8 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 //New NPM Instagram Package Old one was not working
-const ig = new IgApiClient()
+const ig = new IgApiClient();
+app.use(cookieParser());
 
 app.get("/", function (req, res)
 {
@@ -35,9 +36,7 @@ const textOnImage = async (year,branch,message) => {
     if(message.length < 100)
     {
         console.log(message.length)
-        fontMessage = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK).then(font => {
-            image.color([{ apply: 'xor', params: ['#008000'] }]);
-        });
+        fontMessage = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
     }
     else
     {
@@ -81,7 +80,10 @@ const textOnImage = async (year,branch,message) => {
     image.quality(100);
 
     image.write("bg-image/new-images.jpg");
+
+    console.log("Image-Successfully-Created");
 };
+
 
 const postImage = async (param1) =>
 {
@@ -90,7 +92,7 @@ const postImage = async (param1) =>
         await ig.simulate.preLoginFlow()
         const user = await ig.account.login(process.env.INSTAGRAM_USERNAME,process.env.INSTAGRAM_PASSWORD)
 
-        const img = './bg-image/new-imag.jpg'
+        const img = './bg-image/new-images.jpg'
         const published = await ig.publish.photo({
             file: await readFileAsync(img),
             caption: 'The Confession is for @' + param1
@@ -126,19 +128,23 @@ app.post("/", function (req,res)
 
     textOnImage(year,branch,confText);
     postImage(igHandle);
-    deleteFile();
+
+    console.log('Cookies: ', req.cookies)
+
+    console.log('Signed Cookies: ', req.signedCookies)
 
     if(res.statusCode === 200)
     {
+
         res.sendFile(__dirname + '/success.html')
     }
     else
     {
         res.sendFile(__dirname + '/failure.html')
     }
-});
 
-app.post('/')
+    setTimeout(deleteFile,15000);
+});
 
 app.listen(process.env.PORT || 4000, function ()
 {
