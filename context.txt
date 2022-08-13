@@ -1,0 +1,47 @@
+
+// const InstagramLoginFunction = async () => {
+//
+//     //const cookieStore = new FileCookieStore("./cookies.json");
+//
+//     const client = new Instagram({
+//         username:process.env.INSTAGRAM_USERNAME,
+//         password:process.env.INSTAGRAM_PASSWORD,
+//         //cookieStore
+//     },
+//     {
+//         language: "en-US",
+//     }
+//     );
+//
+//     const InstagramPostPictureFunction = async () => {
+//         await client.login();
+//         const photoUp = 'https://i.postimg.cc/yYjG7jVk/bg-images.jpg';
+//         const { media } = await client.uploadPhoto({ photo: photoUp, caption: 'Testing', post: 'feed' })
+//         console.log(`https://www.instagram.com/p/${media.code}/`)
+//     };
+//
+//     try {
+//         console.log("Logging In..")
+//         await InstagramPostPictureFunction();
+//         console.log('Logged In');
+//     }
+//
+//     catch (err)
+//     {
+//         console.log(err);
+//
+//         if (err.statusCode === 403)
+//         {
+//             console.log("can't log in throttled")
+//             return;
+//         }
+//         console.log(err.error);
+//
+//         // if(err.error && err.error.message === 'check_point_required')
+//         // {
+//         //     const challengeUrl = err.error.checkpoint_url;
+//         //
+//         //     await client.updateChallenge({challengeUrl, choice : 1});
+//         // }
+//     }
+// };
