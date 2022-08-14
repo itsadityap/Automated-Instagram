@@ -28,6 +28,16 @@ html, body {
     overflow: hidden;
 }
 
+@media (max-width: 200px) {
+    .Handle{
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        width: 80vw;
+        padding-left: 30px;
+    }
+}
+
 .form-holder {
     display: flex;
     flex-direction: column;
@@ -57,7 +67,7 @@ html, body {
     padding: 40px;
     display: inline-block;
     width: 100%;
-    min-width: 540px;
+    min-width: 200px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

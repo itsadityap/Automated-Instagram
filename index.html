@@ -3,7 +3,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -11,20 +11,20 @@
     <title>JUIT Confessions</title>
 </head>
 <body>
-<div class="form-body">
+<div class="form-body Handle">
     <div class="row">
         <div class="form-holder">
             <div class="form-content">
                 <div class="form-items">
-                    <h3 class="head submit">Confess your feelings freely here! ❤</h3>
+                    <h3 class="head submit Handle">Confess your feelings freely here! ❤</h3>
                     <form method="post" action="/">
-                        <div class="col-md-12">
+                        <div class="col-md-12 Handle">
                             <input class="form-control" type="text" name="igHandle" placeholder="Instagram Handle" required autocomplete="false">
                             <div class="valid-feedback">Instagram Handle field is valid!</div>
                             <div class="invalid-feedback">Instagram Handle field cannot be blank!</div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12 Handle">
                             <select class="form-select mt-3" name="yearOfStudy" required>
                                 <option selected disabled value="">Your Academic Year</option>
                                 <option value="1st Year ,">1st Year</option>
@@ -36,7 +36,7 @@
                             <div class="invalid-feedback">Please select a position!</div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12 Handle">
                             <select class="form-select mt-3" name="branch" required>
                                 <option selected disabled value="">Your Branch</option>
                                 <option value="CSE">CSE</option>
@@ -49,13 +49,13 @@
                             <div class="invalid-feedback">Please select a position!</div>
                         </div>
 
-                        <div class="col-md-12 textarea">
+                        <div class="col-md-12 textarea Handle">
                             <textarea class="form-control" type="text" name="confessionsText" maxlength="400" placeholder="Write Your Confession Here" required ></textarea>
                             <div class="valid-feedback">Confession field is valid!</div>
                             <div class="invalid-feedback">Confession field cannot be blank!</div>
                         </div>
 
-                        <div class="form-button mt-3 submit">
+                        <div class="form-button mt-3 submit Handle">
                             <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
