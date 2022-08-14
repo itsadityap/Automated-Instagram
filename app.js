@@ -26,7 +26,7 @@ app.get("/", function (req, res)
     res.sendFile(__dirname + "/index.html");
 });
 
-const textOnImage = async (year,branch,message) => {
+const textOnImage = async (year,branch,message,igHandle) => {
 
     const image = await Jimp.read("bg-image/bg-images.jpg");
 
@@ -45,6 +45,19 @@ const textOnImage = async (year,branch,message) => {
     }
 
     const fontYearAndBranch = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
+
+    image.print
+    (fontMessage,
+       400,
+       10,
+        {
+            text:igHandle,
+            alignmentX:Jimp.HORIZONTAL_ALIGN_CENTER,
+            alignmentY:Jimp.VERTICAL_ALIGN_MIDDLE
+        },
+        100,
+        100
+    );
 
     image.print
     (fontMessage,
@@ -105,6 +118,31 @@ const postImage = async (param1) =>
     }
 }
 
+const LoginCookie = async () => {
+    const ig = new IgApiClient()
+    ig.state.generateDevice(config.auth.user)
+    // ig.state.device
+    try {
+        if (fs.existsSync(`${userCookiePath}`) && fs.existsSync(`${userDevicePath}`)) {
+            console.log('loading device and session from disk...')
+            let savedCookie = fs.readFileSync(userCookiePath, 'utf-8')
+            let savedDevice = JSON.parse(fs.readFileSync(userDevicePath), 'utf-8')
+            await ig.state.deserializeCookieJar(savedCookie)
+            ig.state.deviceString = savedDevice.deviceString
+            ig.state.deviceId = savedDevice.deviceId
+            ig.state.uuid = savedDevice.uuid
+            ig.state.adid = savedDevice.adid
+            ig.state.build = savedDevice.build
+            let pk = await ig.user.getIdByUsername(config.auth.user)
+            await listFollowers(pk)
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
 const deleteFile = async () =>
 {
     try
@@ -126,7 +164,7 @@ app.post("/", function (req,res)
     const branch = req.body.branch;
     const confText = req.body.confessionsText;
 
-    textOnImage(year,branch,confText);
+    textOnImage(year,branch,confText,igHandle);
     postImage(igHandle);
 
     console.log('Cookies: ', req.cookies)
