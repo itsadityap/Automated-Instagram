@@ -30,11 +30,15 @@ html, body {
 
 @media (max-width: 200px) {
     .Handle{
+        font-size: 10px;
         justify-content: center;
         justify-items: center;
         align-items: center;
         width: 80vw;
         padding-left: 30px;
+    }
+    h3{
+        font-size: 10px;
     }
 }
 
