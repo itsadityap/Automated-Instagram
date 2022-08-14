@@ -181,7 +181,7 @@ app.post("/", function (req,res)
         res.sendFile(__dirname + '/failure.html')
     }
 
-    setTimeout(deleteFile,15000);
+    setTimeout(deleteFile,21000);
 });
 
 app.listen(process.env.PORT || 4000, function ()
