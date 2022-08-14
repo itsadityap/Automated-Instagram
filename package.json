@@ -10,7 +10,7 @@
   "author": "AdityaPandey",
   "license": "ISC",
   "engines": {
-    "node": "14.7.6"
+    "node": "14.17.6"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
