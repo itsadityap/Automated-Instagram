@@ -102,7 +102,7 @@ const postImage = async (param1) =>
 {
     try {
         ig.state.generateDevice(process.env.INSTAGRAM_USERNAME)
-        await ig.simulate.preLoginFlow()
+        //await ig.simulate.preLoginFlow()
         const user = await ig.account.login(process.env.INSTAGRAM_USERNAME,process.env.INSTAGRAM_PASSWORD)
 
         const img = './bg-image/new-images.jpg'
@@ -113,9 +113,8 @@ const postImage = async (param1) =>
         console.log(published)
     }
     catch (err)
-    {
-        console.log(err)
-    }
+    {}
+
 }
 
 const LoginCookie = async () => {
