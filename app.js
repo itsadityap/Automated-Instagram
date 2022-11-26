@@ -98,8 +98,7 @@ const textOnImage = async (year,branch,message,igHandle) => {
 };
 
 
-const postImage = async (param1) =>
-{
+const postImage = async (param1) => {
     try {
         ig.state.generateDevice(process.env.INSTAGRAM_USERNAME)
         //await ig.simulate.preLoginFlow()
@@ -113,34 +112,36 @@ const postImage = async (param1) =>
         console.log(published)
     }
     catch (err)
-    {}
-
-}
-
-const LoginCookie = async () => {
-    const ig = new IgApiClient()
-    ig.state.generateDevice(config.auth.user)
-    // ig.state.device
-    try {
-        if (fs.existsSync(`${userCookiePath}`) && fs.existsSync(`${userDevicePath}`)) {
-            console.log('loading device and session from disk...')
-            let savedCookie = fs.readFileSync(userCookiePath, 'utf-8')
-            let savedDevice = JSON.parse(fs.readFileSync(userDevicePath), 'utf-8')
-            await ig.state.deserializeCookieJar(savedCookie)
-            ig.state.deviceString = savedDevice.deviceString
-            ig.state.deviceId = savedDevice.deviceId
-            ig.state.uuid = savedDevice.uuid
-            ig.state.adid = savedDevice.adid
-            ig.state.build = savedDevice.build
-            let pk = await ig.user.getIdByUsername(config.auth.user)
-            await listFollowers(pk)
-        }
-    }
-    catch (err)
     {
-        console.log(err);
+        console.log(err)
     }
+
 }
+
+// const LoginCookie = async () => {
+//     const ig = new IgApiClient()
+//     ig.state.generateDevice(config.auth.user)
+//     // ig.state.device
+//     try {
+//         if (fs.existsSync(`${userCookiePath}`) && fs.existsSync(`${userDevicePath}`)) {
+//             console.log('loading device and session from disk...')
+//             let savedCookie = fs.readFileSync(userCookiePath, 'utf-8')
+//             let savedDevice = JSON.parse(fs.readFileSync(userDevicePath), 'utf-8')
+//             await ig.state.deserializeCookieJar(savedCookie)
+//             ig.state.deviceString = savedDevice.deviceString
+//             ig.state.deviceId = savedDevice.deviceId
+//             ig.state.uuid = savedDevice.uuid
+//             ig.state.adid = savedDevice.adid
+//             ig.state.build = savedDevice.build
+//             let pk = await ig.user.getIdByUsername(config.auth.user)
+//             await listFollowers(pk)
+//         }
+//     }
+//     catch (err)
+//     {
+//         console.log(err);
+//     }
+// }
 
 const deleteFile = async () =>
 {
